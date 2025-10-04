@@ -6,8 +6,8 @@ import os
 # Добавляем путь к корню проекта в Python path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from models.post_machine import PostMachine
-from models.program_library import ProgramLibrary
+from models.PostMachine import PostMachine
+from models.ProgramLibrary import ProgramLibrary
 from main import PostMachineUI, PostMachineDemo
 
 

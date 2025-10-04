@@ -1,4 +1,4 @@
-from .color import Color
-from .rubiks_cube import RubiksCube
+from .Color import Color
+from .RubiksCube import RubiksCube
 
 __all__ = ['Color', 'RubiksCube']

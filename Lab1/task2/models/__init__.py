@@ -1,4 +1,4 @@
-from .post_machine import PostMachine
-from .program_library import ProgramLibrary
+from .PostMachine import PostMachine
+from .ProgramLibrary import ProgramLibrary
 
 __all__ = ['PostMachine', 'ProgramLibrary']

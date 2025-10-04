@@ -1,6 +1,6 @@
 import random
 from typing import List
-from .color import Color
+from .Color import Color
 
 
 class RubiksCube:

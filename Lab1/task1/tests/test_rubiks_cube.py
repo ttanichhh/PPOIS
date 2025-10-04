@@ -5,8 +5,8 @@ import os
 # Добавляем путь к корню проекта в Python path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from models.rubiks_cube import RubiksCube
-from models.color import Color
+from models.RubiksCube import RubiksCube
+from models.Color import Color
 
 
 # Фикстуры для тестов
