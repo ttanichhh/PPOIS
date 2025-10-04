@@ -1,0 +1,151 @@
+# ================================
+# PyCharm и JetBrains IDE
+# ================================
+.idea/
+*.iws
+*.iml
+*.ipr
+.idea_modules/
+
+# Папка с настройками PyCharm
+.idea/
+# Кэш PyCharm
+*.idea
+
+# ================================
+# Python
+# ================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# ================================
+# Виртуальные окружения
+# ================================
+venv/
+env/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+
+# ================================
+# Операционные системы
+# ================================
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+
+# ================================
+# Файлы с данными и конфиги
+# ================================
+# Файлы окружения
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.secrets
+config.ini
+config.yaml
+config.yml
+
+# Базы данных
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+
+# Логи
+*.log
+logs/
+*.logs
+
+# Временные файлы
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# ================================
+# Прочее
+# ================================
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# PyCharm
+# (уже добавлено выше, но для надежности)
+.idea/
+
+# VS Code
+.vscode/
+
+# Файлы пакетов
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Резервные копии
+*.bak
+*.backup
