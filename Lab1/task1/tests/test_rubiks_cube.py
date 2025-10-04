@@ -1,6 +1,13 @@
 import pytest
-from rubiks_cube import RubiksCube, Color
-import random
+import sys
+import os
+
+# Добавляем путь к корню проекта в Python path
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from models.rubiks_cube import RubiksCube
+from models.color import Color
+
 
 # Фикстуры для тестов
 @pytest.fixture
@@ -211,14 +218,21 @@ class TestScrambling:
         """Вспомогательный метод для получения состояния кубика"""
         return str(cube.front) + str(cube.back) + str(cube.left) + str(cube.right) + str(cube.up) + str(cube.down)
 
+
 def test_main_function_options(monkeypatch, capsys):
     """Тест различных опций главного меню"""
     inputs = ['1', '15', '16', '0']  # Показать -> Проверить -> Сбросить -> Выйти
     input_iterator = iter(inputs)
     monkeypatch.setattr('builtins.input', lambda _: next(input_iterator))
 
-    from rubiks_cube import main
-    main()
+    # ЗАМЕНИ СТРОКУ НИЖЕ:
+    from main import main
+
+    # Тестируем что функция не падает с ошибками
+    try:
+        main()
+    except SystemExit:
+        pass  # Ожидаемый выход из программы
 
     captured = capsys.readouterr()
     # Проверяем что меню отображалось

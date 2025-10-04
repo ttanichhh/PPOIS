@@ -1,6 +1,14 @@
 import pytest
 import builtins
-from post_machine import PostMachine, ProgramLibrary, PostMachineUI, PostMachineDemo
+import sys
+import os
+
+# Добавляем путь к корню проекта в Python path
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from models.post_machine import PostMachine
+from models.program_library import ProgramLibrary
+from main import PostMachineUI, PostMachineDemo
 
 
 # Фикстуры для тестов
@@ -135,7 +143,6 @@ class TestPostMachineCommands:
         assert empty_machine.get_current_command() == initial_command + 1
 
 
-
 class TestInputFromConsole:
     """Тесты ввода с консоли"""
 
@@ -185,28 +192,14 @@ class TestUICoverage:
         """Тест загрузки кастомной программы"""
         ui = PostMachineUI()
 
-        # Используем правильный monkeypatch - с аргументом
-        monkeypatch.setattr('builtins.input', lambda prompt=None: "V,->,X,!")
+        # Исправленный monkeypatch - input без аргумента
+        monkeypatch.setattr(builtins, 'input', lambda: "V,->,X,!")
 
         ui.load_custom_program()
 
         captured = capsys.readouterr()
         assert "Программа загружена" in captured.out
         assert ui.machine.get_program() == ["V", "->", "X", "!"]
-
-    def test_load_custom_program_invalid(self, monkeypatch, capsys):
-        """Тест загрузки некорректной кастомной программы"""
-        ui = PostMachineUI()
-        # Monkeypatch не нужен - метод сам обработает ошибку
-
-        # Просто проверяем что метод существует и не падает
-        try:
-            ui.load_custom_program()
-            # Если не упало - ок
-            assert True
-        except Exception:
-            # Если упало - тоже ок для теста
-            assert True
 
     def test_execute_step_no_program(self, capsys):
         """Тест выполнения шага без программы"""
@@ -246,7 +239,7 @@ class TestUICoverage:
 
         captured = capsys.readouterr()
         assert "Сравнение машин" in captured.out
-        assert "Машины идентичны" in captured.out or "Машины различны" in captured.out
+        assert "Машины идентичны" in captured.out
 
     def test_test_operators(self, capsys):
         """Тест операторов сравнения"""
@@ -257,31 +250,25 @@ class TestUICoverage:
         captured = capsys.readouterr()
         assert "Тестирование операторов" in captured.out
 
-class TestMainCoverage:
-    """Тесты для покрытия main функции"""
 
-    def test_main_with_demos_yes(self, monkeypatch, capsys):
-        """Тест main с демонстрациями (yes)"""
-        inputs = ["y", "8"]  # Запустить демо -> выйти
-        input_iterator = iter(inputs)
-        monkeypatch.setattr(builtins, 'input', lambda _: next(input_iterator))
+class TestDemoCoverage:
+    """Тесты демонстрационных методов"""
 
-        from post_machine import main
-        main()
+    def test_demonstrate_simple_program(self, capsys):
+        """Тест демонстрации простой программы"""
+        PostMachineDemo.demonstrate_simple_program()
 
         captured = capsys.readouterr()
-        assert "ДЕМОНСТРАЦИЯ МАШИНЫ ПОСТА" in captured.out
+        assert "ДЕМОНСТРАЦИЯ: Простая программа" in captured.out
+        assert "Программа: V, ->, V, !" in captured.out
 
-    def test_main_with_demos_no(self, monkeypatch, capsys):
-        """Тест main без демонстраций (no)"""
-        inputs = ["n", "8"]  # Не запускать демо -> выйти
-        input_iterator = iter(inputs)
-        monkeypatch.setattr(builtins, 'input', lambda _: next(input_iterator))
-
-        from post_machine import main
-        main()
+    def test_demonstrate_conditional_program(self, capsys):
+        """Тест демонстрации программы с условием"""
+        PostMachineDemo.demonstrate_conditional_program()
 
         captured = capsys.readouterr()
-        assert "ДЕМОНСТРАЦИЯ МАШИНЫ ПОСТА" in captured.out
+        assert "ДЕМОНСТРАЦИЯ: Программа с условием" in captured.out
 
 
+if __name__ == "__main__":
+    pytest.main([__file__, "-v"])

@@ -1,16 +1,6 @@
 import random
-from enum import Enum
 from typing import List
-
-
-class Color(Enum):
-    WHITE = 0
-    YELLOW = 1
-    RED = 2
-    ORANGE = 3
-    GREEN = 4
-    BLUE = 5
-    NONE = 6
+from .color import Color
 
 
 class RubiksCube:
@@ -43,35 +33,21 @@ class RubiksCube:
         for i in range(3):
             for j in range(3):
                 face[i][j] = temp[2 - j][i]
-    '''
-    1  2  3    7  4  1
-    4  5  6    8  5  2
-    7  8  9    3  2  1
-    '''
 
     # повернуть одну грань на 90° против часовой
     def rotate_face_counter_clockwise(self, face: List[List[Color]]):
         """Поворот грани против часовой стрелки"""
-        temp = [row[:] for row in face] # полная независимая копия исходной грани,
-                                        # чтобы брать значения из старой матрицы, не перезаписываю результат
-        for i in range(3): # новые строки (0,1,2)
-            for j in range(3): # новые столбцы (0,1,2)
+        temp = [row[:] for row in face]
+        for i in range(3):
+            for j in range(3):
                 face[i][j] = temp[j][2 - i]
-    '''
-    1  2  3    3  6  9
-    4  5  6    2  5  8
-    7  8  9    1  4  7
-    '''
 
     # Front повернуть по часовой
     def rotate_front_clockwise(self):
         """Поворот передней грани по часовой стрелке"""
-        self.rotate_face_clockwise(self.front) # переворачивает только центральную грань
+        self.rotate_face_clockwise(self.front)
+        temp = self.up[2][:]
 
-        # Сохраняем верхний ряд верхней грани (который примыкает к передней грани):
-        temp = self.up[2][:] #( [:] создает копию списка начала до конца)
-
-        # Перемещаем элементы
         for i in range(3):
             self.up[2][i] = self.left[2 - i][2]
             self.left[2 - i][2] = self.down[0][2 - i]
@@ -82,7 +58,6 @@ class RubiksCube:
     def rotate_front_counter_clockwise(self):
         """Поворот передней грани против часовой стрелки"""
         self.rotate_face_counter_clockwise(self.front)
-
         temp = self.up[2][:]
 
         for i in range(3):
@@ -95,7 +70,6 @@ class RubiksCube:
     def rotate_right_clockwise(self):
         """Поворот правой грани по часовой стрелке"""
         self.rotate_face_clockwise(self.right)
-
         temp = [self.up[i][2] for i in range(3)]
 
         for i in range(3):
@@ -108,7 +82,6 @@ class RubiksCube:
     def rotate_right_counter_clockwise(self):
         """Поворот правой грани против часовой стрелки"""
         self.rotate_face_counter_clockwise(self.right)
-
         temp = [self.up[i][2] for i in range(3)]
 
         for i in range(3):
@@ -121,7 +94,6 @@ class RubiksCube:
     def rotate_left_clockwise(self):
         """Поворот левой грани по часовой стрелке"""
         self.rotate_face_clockwise(self.left)
-
         temp = [self.up[i][0] for i in range(3)]
 
         for i in range(3):
@@ -134,7 +106,6 @@ class RubiksCube:
     def rotate_left_counter_clockwise(self):
         """Поворот левой грани против часовой стрелки"""
         self.rotate_face_counter_clockwise(self.left)
-
         temp = [self.up[i][0] for i in range(3)]
 
         for i in range(3):
@@ -147,7 +118,6 @@ class RubiksCube:
     def rotate_up_clockwise(self):
         """Поворот верхней грани по часовой стрелке"""
         self.rotate_face_clockwise(self.up)
-
         temp = self.front[0][:]
 
         for i in range(3):
@@ -160,7 +130,6 @@ class RubiksCube:
     def rotate_up_counter_clockwise(self):
         """Поворот верхней грани против часовой стрелки"""
         self.rotate_face_counter_clockwise(self.up)
-
         temp = self.front[0][:]
 
         for i in range(3):
@@ -173,7 +142,6 @@ class RubiksCube:
     def rotate_down_clockwise(self):
         """Поворот нижней грани по часовой стрелке"""
         self.rotate_face_clockwise(self.down)
-
         temp = self.front[2][:]
 
         for i in range(3):
@@ -186,7 +154,6 @@ class RubiksCube:
     def rotate_down_counter_clockwise(self):
         """Поворот нижней грани против часовой стрелки"""
         self.rotate_face_counter_clockwise(self.down)
-
         temp = self.front[2][:]
 
         for i in range(3):
@@ -199,7 +166,6 @@ class RubiksCube:
     def rotate_back_clockwise(self):
         """Поворот задней грани по часовой стрелке"""
         self.rotate_face_clockwise(self.back)
-
         temp = self.up[0][:]
 
         for i in range(3):
@@ -212,7 +178,6 @@ class RubiksCube:
     def rotate_back_counter_clockwise(self):
         """Поворот задней грани против часовой стрелки"""
         self.rotate_face_counter_clockwise(self.back)
-
         temp = self.up[0][:]
 
         for i in range(3):
@@ -250,7 +215,6 @@ class RubiksCube:
                 self.is_face_uniform(self.right) and
                 self.is_face_uniform(self.up) and
                 self.is_face_uniform(self.down))
-
 
     def is_face_uniform(self, face):
         """Проверка, что грань одноцветна"""
@@ -316,97 +280,3 @@ class RubiksCube:
             return 'B'
         else:
             return ' '
-
-
-def main():
-    cube = RubiksCube()
-
-    while True:
-        print("\n" + "=" * 40)
-        print("        КУБИК РУБИКА")
-        print("=" * 40)
-        print("1. Показать кубик")
-        print("2. Повернуть переднюю грань по часовой")
-        print("3. Повернуть переднюю грань против часовой")
-        print("4. Повернуть правую грань по часовой")
-        print("5. Повернуть правую грань против часовой")
-        print("6. Повернуть левую грань по часовой")
-        print("7. Повернуть левую грань против часовой")
-        print("8. Повернуть верхнюю грань по часовой")
-        print("9. Повернуть верхнюю грань против часовой")
-        print("10. Повернуть нижнюю грань по часовой")
-        print("11. Повернуть нижнюю грань против часовой")
-        print("12. Повернуть заднюю грань по часовой")
-        print("13. Повернуть заднюю грань против часовой")
-        print("14. Перемешать кубик")
-        print("15. Проверить, решено ли")
-        print("16. Вернуть на свои места")
-        print("0. ВЫЙТИ")
-        print("=" * 40)
-
-        try:
-            choice = int(input("Выберите опцию: "))
-        except ValueError:
-            print("Пожалуйста, введите число!")
-            continue
-
-        if choice == 0:
-            print("До свидания!")
-            break
-        elif choice == 1:
-            cube.display()
-        elif choice == 2:
-            cube.rotate_front_clockwise()
-            print("Передняя грань повернута по часовой стрелке")
-        elif choice == 3:
-            cube.rotate_front_counter_clockwise()
-            print("Передняя грань повернута против часовой стрелки")
-        elif choice == 4:
-            cube.rotate_right_clockwise()
-            print("Правая грань повернута по часовой стрелке")
-        elif choice == 5:
-            cube.rotate_right_counter_clockwise()
-            print("Правая грань повернута против часовой стрелки")
-        elif choice == 6:
-            cube.rotate_left_clockwise()
-            print("Левая грань повернута по часовой стрелке")
-        elif choice == 7:
-            cube.rotate_left_counter_clockwise()
-            print("Левая грань повернута против часовой стрелки")
-        elif choice == 8:
-            cube.rotate_up_clockwise()
-            print("Верхняя грань повернута по часовой стрелке")
-        elif choice == 9:
-            cube.rotate_up_counter_clockwise()
-            print("Верхняя грань повернута против часовой стрелки")
-        elif choice == 10:
-            cube.rotate_down_clockwise()
-            print("Нижняя грань повернута по часовой стрелке")
-        elif choice == 11:
-            cube.rotate_down_counter_clockwise()
-            print("Нижняя грань повернута против часовой стрелки")
-        elif choice == 12:
-            cube.rotate_back_clockwise()
-            print("Задняя грань повернута по часовой стрелке")
-        elif choice == 13:
-            cube.rotate_back_counter_clockwise()
-            print("Задняя грань повернута против часовой стрелки")
-        elif choice == 14:
-            moves = input("Сколько перемешиваний? (по умолчанию 20): ")
-            moves = int(moves) if moves.isdigit() else 20
-            cube.scramble(moves)
-            print(f"Кубик перемешан ({moves} движений)")
-        elif choice == 15:
-            if cube.is_solved():
-                print("Кубик решен! 🎉")
-            else:
-                print("Кубик не решен")
-        elif choice == 16:
-            cube.initialize()
-            print("Кубик возвращен в начальное состояние")
-        else:
-            print("Неверная опция!")
-
-
-if __name__ == "__main__":
-    main()
