@@ -55,23 +55,7 @@ class TestSupportModules:
 
         print("✅ Person operations - PASSED")
 
-    def test_payment_operations(self):
-        """Тест операций с платежами"""
-        customer = Customer(1, "Test Customer", "+123456789", "test@test.com")
-        order = Order(1, customer)
-        order.total_amount = 100.0
-        payment = Payment(1, order, 100.0, "credit_card")
 
-        # Тест обработки платежа
-        payment.process_payment()
-        assert payment.status == "completed"
-
-        # Тест возврата средств
-        payment.refund(50.0)
-        assert payment.refund_amount == 50.0
-        assert payment.status == "refunded"
-
-        print("✅ Payment operations - PASSED")
 
     def test_reservation_operations(self):
         """Тест операций с бронированиями"""

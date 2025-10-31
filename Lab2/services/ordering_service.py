@@ -100,8 +100,7 @@ class OrderingService:
             "table_number": order.table.table_id if order.table else "Takeout",
             "total_amount": order.total_amount,
             "item_count": len(order.order_items),
-            "status": order.status,
-            "order_time": order.order_time
+            "status": order.status
         }
 
     def find_orders_by_customer(self, customer: Customer) -> list:

@@ -57,3 +57,22 @@ class AuthorizationException(Exception):
 class DatabaseException(Exception):
     """Исключение для базы данных"""
     pass
+
+class LoyaltyException(RestaurantException):
+    """Исключения, связанные с системой лояльности"""
+    pass
+
+
+class FeedbackException(RestaurantException):
+    """Исключения, связанные с системой отзывов и рейтингов"""
+    pass
+
+
+class SecurityBreachException(RestaurantException):
+    """Исключения, связанные с нарушениями безопасности"""
+    pass
+
+
+class IntegrationException(RestaurantException):
+    """Исключения, связанные с интеграциями с внешними системами"""
+    pass
