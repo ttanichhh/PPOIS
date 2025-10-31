@@ -59,54 +59,20 @@ ValidationUtils 1 11 -> Input validation
 - 55 классов
 - 178 полей
 - 113 методов
+- 12 исключений
 
 ### Исключения:
 ```
-class RestaurantException(Exception):
-    """Базовое исключение для ресторана"""
-    pass
-
-class OrderException(RestaurantException):
-    """Исключение для заказов"""
-    pass
-
-class PaymentException(RestaurantException):
-    """Исключение для платежей"""
-    pass
-
-class ReservationException(RestaurantException):
-    """Исключение для бронирований"""
-    pass
-
-class MenuException(RestaurantException):
-    """Исключение для меню"""
-    pass
-
-class EmployeeException(RestaurantException):
-    """Исключение для сотрудников"""
-    pass
-
-class TableException(RestaurantException):
-    """Исключение для столов"""
-    pass
-
-class InventoryException(RestaurantException):
-    """Исключение для инвентаря"""
-    pass
-
-class CustomerException(RestaurantException):
-    """Исключение для клиентов"""
-    pass
-
-class KitchenException(RestaurantException):
-    """Исключение для кухни"""
-    pass
-
-class DeliveryException(RestaurantException):
-    """Исключение для доставки"""
-    pass
-
-class DiscountException(RestaurantException):
-    """Исключение для скидок"""
-    pass
+RestaurantException 00 →
+OrderException 00 →
+PaymentException 00 →
+ReservationException 00 →
+MenuException 00 →
+EmployeeException 00 →
+TableException 00 →
+InventoryException 00 →
+CustomerException 00 →
+KitchenException 00 →
+DeliveryException 00 →
+DiscountException 00 →
 ```
