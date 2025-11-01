@@ -1,4 +1,4 @@
-``` Customer 6 3 → Order, Reservation, LoyaltyProgram, Address
+python -m pytest tests/ -v --cov=exceptions --cov-report=term-missing``` Customer 6 3 → Order, Reservation, LoyaltyProgram, Address
 Employee 7 2 → Shift, Department, Payroll
 Chef 4 1 → Order, Kitchen, Equipment
 Waiter 4 1 → Table, Order, Customer
