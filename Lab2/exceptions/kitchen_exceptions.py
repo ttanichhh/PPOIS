@@ -1,0 +1,2 @@
+class KitchenException(Exception):
+    pass
