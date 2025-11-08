@@ -1,4 +1,4 @@
-Customer 5 2 ->  
+Customer 5 3 ->  
 Employee 5 2 ->  
 MenuItem 5 2 ->  
 Order 5 3 -> Customer, MenuItem  
@@ -9,12 +9,12 @@ Review 5 2 -> Customer, Order
 Invoice 5 2 -> Order  
 LoyaltyMember 4 2 -> Customer  
 
-RestaurantManager 4 3 -> Employee  
+RestaurantManager 4 2 -> Employee  
 KitchenManager 4 2 -> Chef  
 InventoryManager 4 2 -> StockItem  
 HRManager 4 2 -> Employee  
 FinanceManager 4 2 -> ExpenseTracker  
-OrderManager 3 2 -> Order  
+OrderManager 4 2 -> Order  
 MenuManager 3 2 -> MenuItem  
 ReservationManager 3 2 -> Reservation  
 QualityManager -> 4 2   
@@ -24,7 +24,7 @@ SousChef 3 2 -> Chef
 LineCook 4 2 -> Dish  
 PastryChef 3 2 -> Recipe   
 Dish 4 2 -> Ingredient   
-Recipe 4 2 -> Ingredient  
+Recipe 5 2 -> Ingredient  
 Ingredient 4 1 -> StockItem  
 KitchenStation 4 2 -> LineCook  
 FoodPreparation 3 2 -> Dish  
@@ -33,13 +33,13 @@ Waiter 4 2 -> Order, Customer
 Bartender 3 2 -> Order  
 Host 3 2 -> Reservation   
 DeliveryService 4 2 -> Order  
-CustomerService 3 2 -> Customer  
+CustomerService 4 2 -> Customer  
 CleaningStaff 3 2 ->   
 Cashier 3 2 Payment ->  
 Sommelier 3 2 ->  
 Barista 3 2 ->  
 
-StockItem 5 2 ->  
+StockItem 6 2 ->  
 Supplier 4 2 ->  
 InventoryTracker 3 2 -> StockItem  
 StorageUnit 4 2 -> StockItem  
@@ -71,7 +71,7 @@ RestaurantException 0 0 ->
 ServiceException 0 0 ->  
 
 Классы: 51  
-Поля: 179  
+Поля: 183  
 Методы: 104  
 Ассоциации: 36  
 Исключения: 12  
