@@ -1,0 +1,2 @@
+class EventRegistrationError(Exception):
+    pass

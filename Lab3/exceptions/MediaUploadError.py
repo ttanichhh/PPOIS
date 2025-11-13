@@ -1,0 +1,2 @@
+class MediaUploadError(Exception):
+    pass

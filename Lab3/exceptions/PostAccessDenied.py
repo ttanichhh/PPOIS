@@ -1,0 +1,2 @@
+class PostAccessDenied(Exception):
+    pass
