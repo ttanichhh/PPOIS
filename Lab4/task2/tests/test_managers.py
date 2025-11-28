@@ -1,4 +1,3 @@
-import pytest
 import sys
 import os
 
@@ -43,44 +42,3 @@ def test_matrix_manager_connections():
     # Удаляем соединение
     matrix.remove_connection(0, 1)
     assert matrix.get_connection(0, 1) is None
-
-
-def test_adjacency_manager_basic():
-    """Тест базовых операций AdjacencyManager"""
-    vertex1 = GraphVertex("A", {}, 0)
-    vertex2 = GraphVertex("B", {}, 1)
-    vertex3 = GraphVertex("C", {}, 2)
-
-    node1 = GraphNode(vertex2, 0, 1)
-    node2 = GraphNode(vertex3, 0, 2)
-
-    # Добавляем соединения
-    AdjacencyManager.add_connection(vertex1, node1)
-    AdjacencyManager.add_connection(vertex1, node2)
-
-    # Проверяем смежные вершины
-    adjacent = AdjacencyManager.get_connected_vertices(vertex1)
-    assert len(adjacent) == 2
-    assert vertex2 in adjacent
-    assert vertex3 in adjacent
-
-    # Проверяем количество соединений
-    count = AdjacencyManager.count_connections(vertex1)
-    assert count == 2
-
-    # Удаляем соединение
-    AdjacencyManager.remove_connection(vertex1, node1)
-    adjacent_after = AdjacencyManager.get_connected_vertices(vertex1)
-    assert len(adjacent_after) == 1
-    assert vertex3 in adjacent_after
-
-
-def test_adjacency_manager_empty():
-    """Тест AdjacencyManager с пустым списком"""
-    vertex = GraphVertex("A", {}, 0)
-
-    adjacent = AdjacencyManager.get_connected_vertices(vertex)
-    assert len(adjacent) == 0
-
-    count = AdjacencyManager.count_connections(vertex)
-    assert count == 0

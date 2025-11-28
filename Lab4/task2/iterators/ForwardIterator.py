@@ -1,3 +1,5 @@
+"""как бэк но вперед"""
+
 from iterators.BaseBidirectionalIterator import BaseBidirectionalIterator
 from typing import TypeVar, Generic
 

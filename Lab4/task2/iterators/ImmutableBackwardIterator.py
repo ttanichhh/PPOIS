@@ -1,3 +1,6 @@
+"""Это почти копия BackwardIterator, только с «заморозкой» элементов через ImmutableWrapper.
+Идея: можно обойти коллекцию с конца и при этом не дать пользователю изменять объекты."""
+
 from typing import TypeVar, Generic
 from .BaseBidirectionalIterator import BaseBidirectionalIterator
 from ImmutableWrapper import ImmutableWrapper

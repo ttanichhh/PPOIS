@@ -4,8 +4,7 @@ from GraphExceptions import (
     VertexNotFoundError,
     EdgeNotFoundError,
     DuplicateVertexError,
-    DuplicateEdgeError,
-    ImmutableObjectException
+    DuplicateEdgeError
 )
 from iterators.ForwardIterator import ForwardIterator
 from iterators.BackwardIterator import BackwardIterator
@@ -18,22 +17,22 @@ from graph.GraphNode import GraphNode
 from graph.AdjacencyManager import AdjacencyManager
 from graph.MatrixManager import MatrixManager
 
-T = TypeVar("T")
-P = TypeVar("P")
+T = TypeVar("T") # тип значения вершины (город, число, строка и т.д.).
+P = TypeVar("P") # тип «свойств» вершины (обычно словарь).
 
 
-class UndirectedGraph(Generic[T, P]):
+class UndirectedGraph(Generic[T, P]): # UndirectedGraph[str, dict]()
     """
     Неориентированный граф с модифицированной структурой Вирта
-    Комбинация матрицы смежности и двусвязных списков смежности
+    Комбинация матрицы смежности и списков смежности
     """
 
     def __init__(self):
-        self._vertex_list: List[Optional[GraphVertex[T, P]]] = []
-        self._vertex_lookup: dict[T, int] = {}
-        self._connection_list: List[GraphConnection[T, P]] = []
-        self._matrix_handler = MatrixManager[T, P]()
-        self._adjacency_handler = AdjacencyManager[T, P]()
+        self._vertex_list: List[Optional[GraphVertex[T, P]]] = [] # список вершин
+        self._vertex_lookup: dict[T, int] = {} # словарь значение вершины → индекс
+        self._connection_list: List[GraphConnection[T, P]] = [] # список всех рёбер (GraphConnection)
+        self._matrix_handler = MatrixManager[T, P]() # объект, который управляет матрицей смежности
+        self._adjacency_handler = AdjacencyManager[T, P]() # объект, который управляет списками смежности (связанными списками GraphNode)
 
     def _create_immutable(self, obj):
         """Создает неизменяемую обертку для объекта"""

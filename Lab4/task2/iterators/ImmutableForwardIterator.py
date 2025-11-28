@@ -1,3 +1,5 @@
+"""Как ImmutableBackwardIterator"""
+
 from typing import TypeVar, Generic
 from .BaseBidirectionalIterator import BaseBidirectionalIterator
 from ImmutableWrapper import ImmutableWrapper

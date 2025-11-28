@@ -1,14 +1,14 @@
 from UndirectedGraph import UndirectedGraph
 
-def DemonstrateGraph():
+def demonstrate_graph():
     print("=== Демонстрация неориентированного графа с модифицированной структурой Вирта ===\n")
 
     # Создаем граф для хранения городов и расстояний
-    transportation_network = UndirectedGraph[str, dict]()
+    transportation_network = UndirectedGraph[str, dict]() # str (названия городов), свойства вершин — dict (население)
 
     # Добавляем города (вершины)
     print("Добавляем города:")
-    cities = ["Москва", "СПб", "Казань", "Новосибирск"]
+    cities = ["Минск", "Брест", "Кобрин", "Хидры"]
     for city in cities:
         transportation_network.insert_vertex(city, {"population": 1000000})
         print(f"  Добавлен город: {city}")
@@ -18,10 +18,10 @@ def DemonstrateGraph():
     # Добавляем дороги (связи)
     print("\nСтроим дороги:")
     roads = [
-        ("Москва", "СПб", {"distance": 700}),
-        ("Москва", "Казань", {"distance": 800}),
-        ("СПб", "Казань", {"distance": 1200}),
-        ("Москва", "Новосибирск", {"distance": 2800})
+        ("Минск", "Брест", {"distance": 700}),
+        ("Минск", "Кобрин", {"distance": 800}),
+        ("Брест", "Кобрин", {"distance": 1200}),
+        ("Минск", "Хидры", {"distance": 2800})
     ]
 
     for city1, city2, attrs in roads:
@@ -44,8 +44,8 @@ def DemonstrateGraph():
         degree = transportation_network.calculate_vertex_degree(vertex.value)
         print(f"  Город {vertex.value}: соединен с {degree} городами")
 
-    print(f"\nСмежные города для Москвы:")
-    for neighbor in transportation_network.adjacent_vertex_iterator("Москва"):
+    print(f"\nСмежные города для Минска:")
+    for neighbor in transportation_network.adjacent_vertex_iterator("Минск"):
         print(f"  - {neighbor.value}")
 
     print(f"\nВсе дороги (итератор):")
@@ -57,11 +57,11 @@ def DemonstrateGraph():
     print("ДЕМОНСТРАЦИЯ УДАЛЕНИЯ:")
     print("=" * 50)
 
-    print("\nУдаляем дорогу Москва-СПб:")
-    transportation_network.remove_connection("Москва", "СПб")
+    print("\nУдаляем дорогу Минск-Брест:")
+    transportation_network.remove_connection("Минск", "Брест")
     print(f"Количество дорог после удаления: {transportation_network.get_connection_count()}")
 
-    print(f"\nПроверяем существование дороги Москва-СПб: {transportation_network.connection_exists('Москва', 'СПб')}")
+    print(f"\nПроверяем существование дороги Минск-Брест: {transportation_network.connection_exists('Минск', 'Брест')}")
 
     # Демонстрация неизменяемых итераторов
     print("\n" + "=" * 50)
@@ -95,4 +95,4 @@ def DemonstrateGraph():
 
 
 if __name__ == "__main__":
-    DemonstrateGraph()
+    demonstrate_graph()

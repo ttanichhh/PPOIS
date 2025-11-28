@@ -1,3 +1,5 @@
+"""как устроена и расширяется матрица смежности, где именно лежит ссылка на GraphNode"""
+
 from typing import Generic, TypeVar, List, Optional
 from graph.GraphNode import GraphNode
 
